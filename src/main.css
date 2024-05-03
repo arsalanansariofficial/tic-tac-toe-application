@@ -1,0 +1,348 @@
+@import url('https://fonts.googleapis.com/css2?family=Caprasimo&family=Roboto+Slab:wght@400;700&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  color: #ebe7ef;
+  font-family: 'Roboto Slab', sans-serif;
+  line-height: 1.5;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: radial-gradient(
+    circle at top,
+    rgba(241, 210, 70, 0.98),
+    rgba(250, 176, 103, 0.87)
+  );
+  background-repeat: repeat;
+  background-size: 100% 100%, 30% 30%, 100% 100%;
+  min-height: 110rem;
+}
+
+header {
+  text-align: center;
+}
+
+header img {
+  margin: 3rem auto 1rem auto;
+  width: 8rem;
+  object-fit: contain;
+  filter: drop-shadow(0 0 8px rgba(0, 0, 0, 0.4));
+}
+
+h1 {
+  color: #3f3b00;
+  font-family: 'Caprasimo', cursive;
+  font-size: 3rem;
+  margin: 0 auto 3rem auto;
+}
+
+#game-container {
+  background: linear-gradient(#383624, #282617);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  border-radius: 6px;
+  margin: 3rem auto;
+  padding: 2rem;
+  max-width: 45rem;
+  position: relative;
+}
+
+#players {
+  margin: 1rem 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+#players li {
+  border: 2px solid transparent;
+  width: 50%;
+  display: flex;
+  align-items: center;
+}
+
+#players.highlight-player li.active {
+  border-color: #f6e35a;
+  animation: pulse 2s infinite ease-in-out;
+}
+
+#players.highlight-player li.active .player-name,
+#players.highlight-player li.active .player-symbol {
+  color: #f6e35a;
+}
+
+#players button {
+  color: #c3ba78;
+  background: none;
+  border: none;
+  font-size: 0.9rem;
+  text-align: center;
+  padding: 0.5rem 0.25rem;
+  width: 3rem;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+#players button:hover {
+  color: #f8ca31;
+}
+
+.player {
+  border: 2px solid transparent;
+  border-radius: 4px;
+  font-weight: bold;
+  padding: 0.5rem;
+}
+
+.player-name {
+  border-radius: 4px;
+  color: #e1dec7;
+  font-size: 1rem;
+  text-align: center;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  margin: 0;
+  padding: 0.5rem;
+  width: 10rem;
+  display: inline-block;
+}
+
+.player input {
+  background-color: #46432f;
+  border: none;
+  font: inherit;
+  font-size: 1rem;
+  text-align: center;
+  text-transform: uppercase;
+  padding: 0.5rem;
+  width: 10rem;
+  animation: pulse-text 2s infinite;
+}
+
+.player-symbol {
+  color: #e1dec7;
+  font-size: 1rem;
+  margin-left: 1rem;
+}
+
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+#pre-game {
+  text-align: center;
+}
+
+#pre-game button {
+  color: #f8c031;
+  background: none;
+  border: none;
+  font-size: 4rem;
+  font-family: 'Caprasimo', cursive;
+  text-shadow: 0 0 12px rgba(0, 0, 0, 0.7);
+  cursor: pointer;
+  animation: pulse-text-size 2s infinite ease-out;
+}
+
+#game-board {
+  margin: 3rem 0;
+  padding: 0;
+  gap: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#game-board ol {
+  margin: 0;
+  padding: 0;
+  gap: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+#game-board button {
+  color: #3f3b00;
+  background: #aca788;
+  border: none;
+  font-size: 5rem;
+  font-family: 'Caprasimo', cursive;
+  width: 8rem;
+  height: 8rem;
+  padding: 1rem;
+  cursor: pointer;
+}
+
+#game-over {
+  background-color: rgba(40, 38, 23, 0.95);
+  position: absolute;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  animation: pop-in 0.5s cubic-bezier(0.68, -0.55, 0.65, 0.52) forwards;
+}
+
+#game-over h2 {
+  color: #fcd256;
+  font-size: 4rem;
+  text-align: center;
+  font-family: 'Caprasimo', cursive;
+  margin: 0;
+}
+
+#game-over p {
+  color: #e1dec7;
+  font-size: 2rem;
+  text-align: center;
+}
+
+#game-over button {
+  color: #fcd256;
+  background: none;
+  border-radius: 4px;
+  border: 2px solid #fcd256;
+  box-shadow: 0 0 8px rgba(255, 187, 0, 0.4);
+  font-size: 1.5rem;
+  margin: 0 auto;
+  padding: 0.5rem 1rem;
+  display: block;
+  transition: all 0.2s, color 0.2s;
+  cursor: pointer;
+}
+
+#game-over button:hover {
+  color: #3f3b00;
+  background: #fcd256;
+  box-shadow: 0 0 20px rgba(255, 187, 0, 0.8);
+  transform: scale(1.1);
+}
+
+#log {
+  color: #3f3b00;
+  text-align: center;
+  max-width: 20rem;
+  margin: 2rem auto;
+  padding: 0;
+  list-style: none;
+}
+
+#log li {
+  border-radius: 4px;
+  margin: 0.75rem;
+  animation: slide-in-from-left 1s cubic-bezier(0.075, 0.82, 0.165, 1) forwards;
+}
+
+#log li.highlighted {
+  color: white;
+  background-color: #3f3b00;
+}
+
+#game-hints {
+  color: #46432f;
+  text-align: center;
+}
+
+#game-hints h2 {
+  margin: 0;
+  font-size: 2rem;
+  font-family: 'Caprasimo', cursive;
+}
+
+#game-hints ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+#game-hints button {
+  color: #23221f;
+  background: transparent;
+  border: none;
+  font: inherit;
+  margin-top: 1.5rem;
+  cursor: pointer;
+}
+
+@keyframes slide-in-from-left {
+  0% {
+    opacity: 0;
+    transform: translateX(-30%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse-text {
+  0% {
+    color: #e1dec7;
+  }
+  50% {
+    color: #9f9d83;
+  }
+  100% {
+    color: #e1dec7;
+  }
+}
+
+@keyframes pulse-text-size {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    border-color: #f6e35a;
+    box-shadow: 0 0 0 0 rgba(246, 227, 90, 0.4);
+  }
+  50% {
+    border-color: #f8c031;
+    box-shadow: 0 0 0 0.5rem rgba(248, 165, 49, 0);
+  }
+  100% {
+    border-color: #f6e35a;
+    box-shadow: 0 0 0 0 rgba(246, 227, 90, 0);
+  }
+}
+
+/* Fancy animation for showing the "Game Over" element */
+@keyframes pop-in {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  80% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
